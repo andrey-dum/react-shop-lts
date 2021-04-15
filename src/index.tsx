@@ -10,7 +10,6 @@ import logger from 'redux-logger';
 import App from './App';
 import './index.css';
 
-
 const store = createStore(
   reducer,
   initialState,

@@ -4,11 +4,11 @@ import { MainReducerState } from '../../interfaces'
 type Props = Partial<MainReducerState> & { fetchProductList: Function }
 
 export const ProductList = (props: Props) => {
-  const {fetchProductList, products} = props
+  const {fetchProductList, products, searchString} = props
 
   useEffect(() => {
     fetchProductList()
-  }, []);
+  }, [searchString]);
 
   return (
     <div>
