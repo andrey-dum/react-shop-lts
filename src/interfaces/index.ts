@@ -1,5 +1,5 @@
 export type SortType = 'LOW' | 'HIGH'
-export type currencyType = 'USD' | 'EUR'
+export type CurrencyType = 'USD' | 'EUR'
 export type ActionType = "SET_MAIN_STATE"
 
 export interface Action {
@@ -7,27 +7,27 @@ export interface Action {
   payload: Partial<MainReducerState>
 }
 
-export interface ICartItem {
+export interface CartItem {
   id: number;
   quanity: number;
 }
 
-export interface IProduct {
+export interface Product {
   readonly id: number;
   readonly title: string;
   readonly description: string;
   readonly price: string;
-  readonly imageuRL: string;
+  readonly imageUrl: string;
 
 }
 
 export interface MainReducerState {
   loading: boolean;
-  products: IProduct[];
+  products: Product[];
   searchString?: string;
   sortBy: SortType;
-  currency: currencyType;
-  cart: ICartItem[];
+  currency: CurrencyType;
+  cart: CartItem[];
 }
 
 

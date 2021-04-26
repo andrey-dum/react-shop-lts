@@ -8,7 +8,7 @@ const products = [...Array(30).keys()].map((_, i) => ({
   title: productName(),
   description: productDescription(),
   price: price(),
-  iamgeUrl: `https://picsum.photos/300/300`
+  imageUrl: `https://picsum.photos/300/300`
 }))
 
 
