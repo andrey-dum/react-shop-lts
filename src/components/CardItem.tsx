@@ -3,9 +3,9 @@ import React, { memo, useCallback } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import isEqual from 'lodash/isEqual'
 import styled from 'styled-components'
-// import Currency from 'react-currency-formatter'
+import Currency from 'react-currency-formatter'
 import { Product, Action, CartItem, CurrencyType } from '../interfaces'
-// import { currencyStats } from '../utils/helpers'
+import { currencyStats } from '../utils/helpers'
 
 type Props = Product & { currency?: CurrencyType, setMainState: (payload: any) => Action, cart: CartItem[] }
 
@@ -38,12 +38,12 @@ const CardItem = (props: Props) => {
         <Card.Text className='mb-2'>
           {description}
         </Card.Text>
-        {/* <span className='card-price font-weight-bold mb-2'>
+        <span className='card-price font-weight-bold mb-2'>
           <Currency
             quantity={+price * currencyStats[currency]}
             currency={currency}
           />
-        </span> */}
+        </span>
         <Button
           variant="primary"
           onClick={addToCart}
