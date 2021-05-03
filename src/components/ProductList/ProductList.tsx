@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, memo } from 'react'
 import { Col, Container, Pagination, Row } from 'react-bootstrap'
 import { Action, MainReducerState } from '../../interfaces'
 import CardItem from '../CardItem'
 import { ThunkDispatch } from 'redux-thunk'
+import { isEqual } from 'lodash'
 
 
 const PAGE_LIMIT: number = 4
@@ -21,16 +22,22 @@ interface Actions {
 
 type Props = MainReducerState & { actions: Actions }
 
-export const ProductList = (props: Props) => {
+const ProductList = (props: Props) => {
   // const {actions: { fetchProductList, setMainState }, products = [], searchString} = props
-  const { actions: { fetchProductList, setMainState }, products = [], searchString, currency, cart} = props
+  const { actions: { fetchProductList, setMainState }, products = [], searchString, currency, cart = [] } = props
+  const cardProps = { currency, setMainState, cart }
+
   const [activePage, setActivePage] = useState<number>(0)
 
   useEffect(() => {
     fetchProductList()
   }, [searchString]);
 
-  const cardProps = { currency, setMainState, cart }
+  useEffect(() => {
+    setActivePage(0)
+  }, [setActivePage, searchString]);
+
+
 
   const { pagItems,  pagStart, pagEnd} = useMemo(() => {
     const pageLimit = Math.ceil(products.length / PAGE_LIMIT)
@@ -71,3 +78,9 @@ export const ProductList = (props: Props) => {
     </Container>
   )
 }
+
+const propsAreEquil = (prevProps: Props, nextProps: Props): boolean => {
+  return isEqual(prevProps, nextProps)
+}
+
+export default memo(ProductList, propsAreEquil)
